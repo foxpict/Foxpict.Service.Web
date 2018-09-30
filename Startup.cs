@@ -160,6 +160,8 @@ namespace Foxpict.Service.Web {
     private void SetupApplication () {
       var appConfig = new AppSettings ();
       Configuration.Bind ("AppSettings", appConfig);
+      Configuration.Bind (appConfig);
+
       mContainer.RegisterInstance<IAppSettings>(appConfig);
 
       var assemblyParameter = new BuildAssemblyParameter (appConfig);
