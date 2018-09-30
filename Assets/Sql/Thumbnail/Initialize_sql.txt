@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS [svp_AppMetaInfo]
+(
+	[Id] INTEGER PRIMARY KEY AUTOINCREMENT,
+	[Key] TEXT NOT NULL,
+	[Value] TEXT
+);
+
+CREATE TABLE IF NOT	EXISTS [svp_Thumbnail]
+(
+	[Id] INTEGER PRIMARY KEY AUTOINCREMENT,
+	[ThumbnailKey] TEXT,
+	[ThumbnailType] TEXT NOT NULL,
+    [MimeType] TEXT,
+	[BitmapBytes] BLOB
+);

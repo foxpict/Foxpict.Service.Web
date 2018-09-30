@@ -1,0 +1,166 @@
+CREATE TABLE IF NOT EXISTS "svp_AppMetaInfo"
+(
+	"Id" SERIAL,
+	"Key" TEXT NOT NULL,
+	"Value" TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "svp_Category"
+(
+	"Id" SERIAL,
+	"Name" TEXT NOT NULL,
+	"ParentCategoryId" INTEGER,
+	"StarRating" INTEGER NOT NULL DEFAULT 0,
+	"ArtworkThumbnailKey" TEXT,
+	"AlbumFlag" BOOLEAN NOT NULL DEFAULT FALSE,
+	"ReadableCount" INTEGER NOT NULL DEFAULT 0,
+	"LastReadDate" DATE,
+	"ReadableDate" DATE,
+	"ReadableFlag" BOOLEAN NOT NULL DEFAULT FALSE,
+	"NextDisplayContentId" INTEGER,
+	"BookmarkValue" TEXT,
+	"AccessDate" DATE,
+	"CreatedDate" DATE,
+	"CreatedBy" TEXT,
+	"UpdatedDate" DATE,
+	"UpdatedBy" TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "svp_Content"
+(
+	"Id" SERIAL,
+	"Name" TEXT NOT NULL,
+	"IdentifyKey" TEXT,
+	"ContentHash" TEXT,
+	"ThumbnailKey" TEXT,
+	"Caption" TEXT,
+	"Comment" TEXT,
+	"StarRating" INTEGER NOT NULL DEFAULT 0,
+	"ArchiveFlag" BOOLEAN NOT NULL DEFAULT FALSE,
+  "ReadableCount" INTEGER NOT NULL DEFAULT 0,
+	"LastReadDate" DATE,
+  "ReadableDate" DATE,
+	"ReadableFlag" BOOLEAN NOT NULL DEFAULT FALSE,
+	"CategoryId" INTEGER,
+	"FileMappingInfoId" INTEGER,
+	"AccessDate" DATE,
+	"CreatedDate" DATE,
+	"CreatedBy" TEXT,
+	"UpdatedDate" DATE,
+	"UpdatedBy" TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "svp_EventLog"
+(
+	"Id" SERIAL,
+	"Sender" TEXT,
+	"Message" TEXT,
+	"Value" TEXT,
+	"EventDate" DATE,
+	"CreatedDate" DATE,
+	"CreatedBy" TEXT,
+	"UpdatedDate" DATE,
+	"UpdatedBy" TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "svp_FileMappingInfo"
+(
+	"Id" SERIAL,
+	"AclHash" TEXT NOT NULL,
+	"MappingFilePath" TEXT DEFAULT NULL,
+	"Mimetype" TEXT,
+	"LostFileFlag" BOOLEAN NOT NULL DEFAULT FALSE,
+	"RecycleBoxFlag" BOOLEAN NOT NULL DEFAULT FALSE,
+	"WorkspaceId" INTEGER NOT NULL,
+	"CreatedDate" DATE,
+	"CreatedBy" TEXT,
+	"UpdatedDate" DATE,
+	"UpdatedBy" TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "svp_Label"
+(
+	"Id" SERIAL,
+	"Name" TEXT NOT NULL,
+	"Comment" TEXT,
+	"MetaType" TEXT,
+  "ParentLabelId" INTEGER,
+	"AccessDate" DATE,
+	"CreatedDate" DATE,
+	"CreatedBy" TEXT,
+	"UpdatedDate" DATE,
+	"UpdatedBy" TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "svp_Workspace"
+(
+	"Id" SERIAL,
+	"Name" TEXT NOT NULL,
+	"PhysicalPath" TEXT NOT NULL,
+	"VirtualPath" TEXT NOT NULL,
+	"LastFullBuildDate" DATE,
+	"AccessDate" DATE,
+	"CreatedDate" DATE,
+	"CreatedBy" TEXT,
+	"UpdatedDate" DATE,
+	"UpdatedBy" TEXT
+);
+
+
+CREATE TABLE IF NOT EXISTS "svp_P_Label2Content"
+(
+	"LabelId" INTEGER NOT NULL,
+	"ContentId" INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "svp_P_Label2Category"
+(
+	"LabelId" INTEGER NOT NULL,
+	"CategoryId" INTEGER NOT NULL,
+	"Order" INTEGER NOT NULL DEFAULT 100,
+	"LastCause" TEXT,
+	"TraceRecord" TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "svp_Eav_Text"
+(
+	"EntityTypeName" TEXT NOT NULL,
+	"CategoryName" TEXT NOT NULL,
+	"EntityId" INTEGER NOT NULL,
+	"Key" TEXT NOT NULL,
+	"Value" TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "svp_Eav_Int"
+(
+	"EntityTypeName" TEXT NOT NULL,
+	"CategoryName" TEXT NOT NULL,
+	"EntityId" INTEGER NOT NULL,
+	"Key" TEXT NOT NULL,
+	"Value" INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS "svp_Eav_Bool"
+(
+	"EntityTypeName" TEXT NOT NULL,
+	"CategoryName" TEXT NOT NULL,
+	"EntityId" INTEGER NOT NULL,
+	"Key" TEXT NOT NULL,
+	"Value" BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS "svp_Eav_Date"
+(
+	"EntityTypeName" TEXT NOT NULL,
+	"CategoryName" TEXT NOT NULL,
+	"EntityId" INTEGER NOT NULL,
+	"Key" TEXT NOT NULL,
+	"Value" DATE
+);
+
+--
+-- Initialize Data
+--
+INSERT INTO "svp_Category" ("Name", "CreatedDate", "UpdatedDate") VALUES ('ROOT', '2009-08-24 23:10:15','2009-08-24 23:10:15');
+
+INSERT INTO "svp_AppMetaInfo" ("Key","Value") VALUES ('APPDB_VER','1.0.0');
