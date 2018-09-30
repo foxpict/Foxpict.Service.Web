@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.0\foxpict.service.web.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.1\Foxpict.Service.Web.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.1\foxpict.service.web.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netcoreapp2.1\Foxpict.Service.Web.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

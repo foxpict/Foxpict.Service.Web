@@ -1,4 +1,4 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime
 WORKDIR /app
 COPY . .
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet foxpict.service.web.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Foxpict.Service.Web.dll

@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/foxpict.service.web.csproj"
+                "${workspaceFolder}/Foxpict.Service.Web.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

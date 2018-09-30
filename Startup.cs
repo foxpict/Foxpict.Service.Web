@@ -58,7 +58,7 @@ namespace Foxpict.Service.Web {
         });
         // Set the comments path for the Swagger JSON and UI.
         var basePath = AppContext.BaseDirectory;
-        var xmlPath = Path.Combine (basePath, "foxpict.service.web.xml");
+        var xmlPath = Path.Combine (basePath, "Foxpict.Service.Web.xml");
         c.IncludeXmlComments (xmlPath);
       });
 

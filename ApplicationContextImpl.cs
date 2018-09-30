@@ -194,7 +194,7 @@ namespace Foxpict.Service.Web {
         // データベースにテーブルなどの構造を初期化する
         string sqltext = "";
         System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly ();
-        string filePath = string.Format ("foxpict.service.web.Assets.Sql.{0}.Initialize_sql.txt", "App");
+        string filePath = string.Format ("Foxpict.Service.Web.Assets.Sql.{0}.Initialize_sql.txt", "App");
 
         mLogger.Info ($"初期化SQLを'{@filePath}'から読み込みます");
         using (var stream = assm.GetManifestResourceStream (filePath)) {
@@ -290,7 +290,7 @@ namespace Foxpict.Service.Web {
         string sqltext = "";
         System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly ();
 
-        using (var stream = assm.GetManifestResourceStream (string.Format ("foxpict.service.web.Assets.Sql.{0}.Initialize_sql.txt", "Thumbnail"))) {
+        using (var stream = assm.GetManifestResourceStream (string.Format ("Foxpict.Service.Web.Assets.Sql.{0}.Initialize_sql.txt", "Thumbnail"))) {
           using (StreamReader reader = new StreamReader (stream)) {
             sqltext = reader.ReadToEnd ();
           }
@@ -343,7 +343,7 @@ namespace Foxpict.Service.Web {
       var mss = assm.GetManifestResourceNames ();
 
       // この方法で読み込みができるリソースファイルの種類は「埋め込みリソース」を設定したもののみです。
-      var r = new Regex (string.Format ("foxpict.service.web.Assets.Sql.{0}.{1}", dbselect, "upgrade - " + currentVersion + "-(.+)\\.txt"));
+      var r = new Regex (string.Format ("Foxpict.Service.Web.Assets.Sql.{0}.{1}", dbselect, "upgrade - " + currentVersion + "-(.+)\\.txt"));
       foreach (var rf in assm.GetManifestResourceNames ()) {
         var matcher = r.Match (rf);
         if (matcher.Success && matcher.Groups.Count > 1) {
