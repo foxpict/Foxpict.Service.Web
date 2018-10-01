@@ -1,9 +1,0 @@
-
-CREATE TABLE IF NOT	EXISTS "svp_Thumbnail"
-(
-	"Id" SERIAL,
-	"ThumbnailKey" TEXT,
-	"ThumbnailType" TEXT NOT NULL,
-	"MimeType" TEXT,
-	"BitmapBytes" bytea
-);
