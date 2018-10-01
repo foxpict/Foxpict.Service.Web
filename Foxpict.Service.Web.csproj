@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\Icon\**\*.png" />
     <EmbeddedResource Include="Assets\Kitting\**\*.txt" />
     <EmbeddedResource Include="Assets\Sql\**\*.txt" />
   </ItemGroup>
