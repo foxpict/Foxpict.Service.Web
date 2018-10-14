@@ -4,8 +4,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Foxpict.Service.Core;
+using Foxpict.Service.Core.Service;
 using Foxpict.Service.Core.Vfs;
+using Foxpict.Service.Extention.InitializeBuild;
 using Foxpict.Service.Extention.Sdk;
+using Foxpict.Service.Extention.WebScribe;
 using Foxpict.Service.Gateway;
 using Foxpict.Service.Gateway.Repository;
 using Foxpict.Service.Infra;
@@ -111,14 +114,18 @@ namespace Foxpict.Service.Web {
       container.Register<IThumbnailBuilder, ThumbnailBuilder> ();
       container.Register<IFileUpdateRunner, FileUpdateRunner> ();
 
+      // サービス登録
+      container.Register<IVirtualFileSystemService, VirtualFileSystemServiceImpl> ();
+
       // メッセージング機能
+      container.Register<IMessagingScopeContext, MessagingScopeContext> (Lifestyle.Scoped);
       var messagingManager = new MessagingManager (container);
       container.RegisterInstance<MessagingManager> (messagingManager);
       container.RegisterInstance<IMessagingManager> (messagingManager);
 
       // 拡張機能
       var extentionManager = new ExtentionManager (container);
-      //extentionManager.AddPlugin (typeof (FullBuildExtention)); // 開発中は常に拡張機能を読み込む
+      //extentionManager.AddPlugin (typeof (InitializeBuildExtention)); // 開発中は常に拡張機能を読み込む
       //extentionManager.AddPlugin (typeof (WebScribeExtention)); // 開発中は常に拡張機能を読み込む
       container.RegisterInstance<ExtentionManager> (extentionManager);
       extentionManager.InitializePlugin (ExtentionDirectoryPath);
