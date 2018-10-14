@@ -91,20 +91,32 @@ namespace Foxpict.Service.Web {
       app.UseStaticFiles ();
       //app.UseSpaStaticFiles(); // services.AddSpaStaticFilesを使って、ASPに静的なファイルを組み込む場合は併用する
 
-      using (AsyncScopedLifestyle.BeginScope (mContainer)) {
+      using (var scope = FoxpictAsyncScopedLifestyle.BeginScope (mContainer)) {
         // カットポイント「INIT」を呼び出す
         var extentionManager = mContainer.GetInstance<ExtentionManager> ();
-        extentionManager.Execute (ExtentionCutpointType.INIT);
+        try {
+          extentionManager.Execute (ExtentionCutpointType.INIT);
+          scope.Complete ();
+        } catch (Exception expr) {
+          mLogger.Error (expr, "INITカットポイントの処理に失敗しました。");
+          mLogger.Debug (expr.StackTrace);
+        }
       }
 
-      using (AsyncScopedLifestyle.BeginScope (mContainer)) {
+      using (var scope = FoxpictAsyncScopedLifestyle.BeginScope (mContainer)) {
         // カットポイント「START」を呼び出す
         var extentionManager = mContainer.GetInstance<ExtentionManager> ();
-        extentionManager.Execute (ExtentionCutpointType.START, new CutpointStartParameter { WorkspaceId = 1L });
+        try {
+          extentionManager.Execute (ExtentionCutpointType.START, new CutpointStartParameter { WorkspaceId = 1L });
+          scope.Complete ();
+        } catch (Exception expr) {
+          mLogger.Error (expr, "STARTカットポイントの処理に失敗しました。");
+          mLogger.Debug (expr.StackTrace);
+        }
       }
 
       // 監視開始
-      using (AsyncScopedLifestyle.BeginScope (mContainer)) {
+      using (FoxpictAsyncScopedLifestyle.BeginScope (mContainer)) {
         var vspFileUpdateWatchManager = mContainer.GetInstance<VspFileUpdateWatchManager> ();
 
         var workspaceRepository = mContainer.GetInstance<IWorkspaceRepository> ();
@@ -162,7 +174,7 @@ namespace Foxpict.Service.Web {
       Configuration.Bind ("AppSettings", appConfig);
       Configuration.Bind (appConfig);
 
-      mContainer.RegisterInstance<IAppSettings>(appConfig);
+      mContainer.RegisterInstance<IAppSettings> (appConfig);
 
       var assemblyParameter = new BuildAssemblyParameter (appConfig);
       mContainer.RegisterInstance<IBuildAssemblyParameter> (assemblyParameter);
