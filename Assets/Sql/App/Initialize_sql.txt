@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS [svp_Content]
 CREATE TABLE IF NOT EXISTS [svp_EventLog]
 (
 	[Id] INTEGER PRIMARY KEY AUTOINCREMENT,
+  [EventNo] INTEGER,
 	[Sender] TEXT,
 	[Message] TEXT,
 	[Value] TEXT,

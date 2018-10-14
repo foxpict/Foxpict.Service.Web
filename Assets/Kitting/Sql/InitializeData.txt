@@ -1,4 +1,4 @@
-INSERT INTO `svp_AppMetaInfo` (Key,Value) VALUES ('FullBuildCategoryLabelNameParser0','\((?<Category>.+)\) \[(?<Group>.*) \((?<Author>.+)\)\] .+ \((?<Original>.*)\)');
-INSERT INTO `svp_AppMetaInfo` (Key,Value) VALUES ('FullBuildCategoryLabelNameParser1','\((?<Category>.+)\) \[(?<Group>.*)\] .+ \((?<Original>.*)\)');
-INSERT INTO `svp_AppMetaInfo` (Key,Value) VALUES ('FullBuildCategoryNameParser0','\(.*\) \[.*\] (?<CategoryName>.+) \(.*\)');
-INSERT INTO `svp_AppMetaInfo` (Key,Value) VALUES ('FullBuildCategoryNameParser1','\(.*\) \[.*\] (?<CategoryName>.+)');
+INSERT INTO `svp_AppMetaInfo` (Key,Value) VALUES ('InitializeBuildCategoryLabelNameParser0','\((?<Category>.+)\) \[(?<Group>.*) \((?<Author>.+)\)\] .+ \((?<Original>.*)\)');
+INSERT INTO `svp_AppMetaInfo` (Key,Value) VALUES ('InitializeBuildCategoryLabelNameParser1','\((?<Category>.+)\) \[(?<Group>.*)\] .+ \((?<Original>.*)\)');
+INSERT INTO `svp_AppMetaInfo` (Key,Value) VALUES ('InitializeBuildCategoryNameParser0','\(.*\) \[.*\] (?<CategoryName>.+) \(.*\)');
+INSERT INTO `svp_AppMetaInfo` (Key,Value) VALUES ('InitializeBuildCategoryNameParser1','\(.*\) \[.*\] (?<CategoryName>.+)');
