@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Foxpict.Service.Core;
+using Foxpict.Service.Core.Service;
 using Foxpict.Service.Extention.Sdk;
 using Foxpict.Service.Infra;
 using Foxpict.Service.Infra.Model;
@@ -115,13 +116,12 @@ namespace Foxpict.Service.Web {
         }
       }
 
-      // 監視開始
+      // FS監視開始
       using (FoxpictAsyncScopedLifestyle.BeginScope (mContainer)) {
-        var vspFileUpdateWatchManager = mContainer.GetInstance<VspFileUpdateWatchManager> ();
-
         var workspaceRepository = mContainer.GetInstance<IWorkspaceRepository> ();
-        var workspace = workspaceRepository.Load (1L);
-        vspFileUpdateWatchManager.StartWatch (workspace);
+
+        var vspFileUpdateWatchManager = mContainer.GetInstance<VirtualFileUpdateWatchService> ();
+        vspFileUpdateWatchManager.StartWatch (workspaceRepository.Load (1L));
       }
 
       app.UseMvc (routes => {
@@ -201,9 +201,11 @@ namespace Foxpict.Service.Web {
           if (appConfig.Workspace.RelativeApplicationDirectoryBasePath) {
             workspace.PhysicalPath = Path.Combine (appCtx.ApplicationDirectoryPath, appConfig.Workspace.PhysicalPath);
             workspace.VirtualPath = Path.Combine (appCtx.ApplicationDirectoryPath, appConfig.Workspace.VirtualPath);
+            workspace.ImportPath = Path.Combine (appCtx.ApplicationDirectoryPath, appConfig.Workspace.ImportPath);
           } else {
             workspace.PhysicalPath = appConfig.Workspace.PhysicalPath;
             workspace.VirtualPath = appConfig.Workspace.VirtualPath;
+            workspace.ImportPath = appConfig.Workspace.ImportPath;
           }
           workspaceRepository.Save ();
 

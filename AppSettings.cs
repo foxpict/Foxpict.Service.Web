@@ -62,6 +62,12 @@ namespace Foxpict.Service.Web {
       /// </summary>
       /// <value></value>
       public string PhysicalPath { get; set; }
+
+      /// <summary>
+      ///
+      /// /// </summary>
+      /// <value></value>
+      public string ImportPath { get; set; }
     }
   }
 }

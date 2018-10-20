@@ -101,6 +101,7 @@ CREATE TABLE IF NOT EXISTS [svp_Workspace]
 	[Name] TEXT NOT NULL,
 	[PhysicalPath] TEXT NOT NULL,
 	[VirtualPath] TEXT NOT NULL,
+  [ImportPath] TEXT NOT NULL,
 	[LastFullBuildDate] DATE,
 	[AccessDate] DATE,
 	[CreatedDate] DATE,
