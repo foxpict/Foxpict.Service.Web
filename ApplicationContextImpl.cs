@@ -132,8 +132,8 @@ namespace Foxpict.Service.Web {
       extentionManager.CompletePlugin ();
 
       // VFS機能
-      var vspFileUpdateWatchManager = new VspFileUpdateWatchManager (container);
-      container.RegisterInstance<VspFileUpdateWatchManager> (vspFileUpdateWatchManager);
+      var virtualFileUpdateWatchService = new VirtualFileUpdateWatchService (container);
+      container.RegisterInstance<VirtualFileUpdateWatchService> (virtualFileUpdateWatchService);
     }
 
     /// <summary>
