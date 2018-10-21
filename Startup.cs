@@ -79,6 +79,7 @@ namespace Foxpict.Service.Web {
         app.UseDeveloperExceptionPage ();
       }
 
+      app.UseHttpsRedirection(); // SSL
       app.UseDefaultFiles ();
       app.UseStaticFiles ();
 
