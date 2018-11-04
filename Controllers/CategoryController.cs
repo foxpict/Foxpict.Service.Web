@@ -216,6 +216,66 @@ namespace Foxpict.Service.Web.Controllers {
     }
 
     /// <summary>
+    /// ラベルの組み合わせすべてに一致するアルバムカテゴリ一覧を取得します
+    /// </summary>
+    /// <param name="labels">ラベル組み合わせ</param>
+    /// <returns>アルバムカテゴリ一覧</returns>
+    [HttpGet ("w_album/+{labels}")]
+    [ProducesResponseType (200)]
+    public ActionResult<ResponseAapi<ICollection<ICategory>>> SearchAlbumCategory1 (string labels) {
+      mLogger.Info ("REQUEST - {0}", labels);
+      var response = new ResponseAapi<ICollection<ICategory>> ();
+      var categoryList = new List<ICategory> ();
+
+      // クエリパラメータからラベルIDを取り出します
+      List<ILabel> labelentity = new List<ILabel> ();
+      string[] labelIdstr = labels.Split (',');
+      foreach (var labelId in labelIdstr) {
+        labelentity.Add (
+          new Label { Id = long.Parse (labelId) }
+        );
+      }
+      var query = this.mCategoryRepository.FindCategory (labelentity)
+        .Where (category => category.AlbumFlag == true);
+      categoryList.AddRange (
+        query.Take (1000000)
+      );
+
+      response.Value = categoryList;
+      return response;
+    }
+
+    /// <summary>
+    /// ラベルの組み合わせすべてに一致するアルバムカテゴリ一覧を取得します
+    /// </summary>
+    /// <param name="labels">ラベル組み合わせ</param>
+    /// <returns>アルバムカテゴリ一覧</returns>
+    [HttpGet ("w_album/-{labels}")]
+    [ProducesResponseType (200)]
+    public ActionResult<ResponseAapi<ICollection<ICategory>>> SearchAlbumCategory2 (string labels) {
+      mLogger.Info ("REQUEST - {0}", labels);
+      var response = new ResponseAapi<ICollection<ICategory>> ();
+      var categoryList = new List<ICategory> ();
+
+      // クエリパラメータからラベルIDを取り出します
+      List<ILabel> labelentity = new List<ILabel> ();
+      string[] labelIdstr = labels.Split (',');
+      foreach (var labelId in labelIdstr) {
+        labelentity.Add (
+          new Label { Id = long.Parse (labelId) }
+        );
+      }
+      var query = this.mCategoryRepository.FindCategoryOr (labelentity)
+        .Where (category => category.AlbumFlag == true);
+      categoryList.AddRange (
+        query.Take (1000000)
+      );
+
+      response.Value = categoryList;
+      return response;
+    }
+
+    /// <summary>
     /// 新しいカテゴリを登録します（未実装）
     /// </summary>
     /// <param name="value"></param>
